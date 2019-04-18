@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Child from './child.component';
-import Toast from './toast.component';
+// import Toast from './toast.component';
+import { toast } from 'react-toastify';
+
+
 
 export default function mainComponent() {
   const [counter, setCounter ] = useState(0);
-  const [isShow, showToast] = useState(false);
   const increment = () => {
     setCounter(counter+1);
   }
@@ -15,8 +17,8 @@ export default function mainComponent() {
     setCounter(counter-1);
   }
   const setShowToast = () => {
-    console.log('++++');
-    showToast(true);
+    // console.log(isShow);
+    toast.error("Success",{position: 'bottom-left'});
   }
   return (
     <div>
@@ -28,7 +30,6 @@ export default function mainComponent() {
       <Child counter={counter}></Child>
       <hr/>
       <button onClick={setShowToast}>show toast</button>
-      <Toast isOpen={isShow}></Toast>
     </div>
   )
 }

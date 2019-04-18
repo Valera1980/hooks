@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 
 
+
 const styles = theme => ({
   close: {
     padding: theme.spacing.unit / 2,
@@ -14,13 +15,20 @@ const styles = theme => ({
 
 export function toast(props) {
   const { classes } = props;
-  const [isOpen, setOpen] = useState(false);
+
+  // useEffect(() => {
+     console.log(props);
+  //   setOpen(props.isOpen);
+  // }, [props.isOpen])
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-    setOpen(false);
+    props.show.open = false;
+    console.log(props);
+
+    // setOpen(false);
   };
   return (
     <Snackbar
@@ -28,7 +36,7 @@ export function toast(props) {
         vertical: 'bottom',
         horizontal: 'left',
       }}
-      open={isOpen}
+      open={props.show.open}
       autoHideDuration={6000}
       onClose={handleClose}
       ContentProps={{
